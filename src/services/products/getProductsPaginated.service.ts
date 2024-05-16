@@ -9,7 +9,7 @@ export default async function getProductsPaginatedService(
   const queryString =
     `?_page=${page}&_per_page=${perPage}` + (category ? `&category=${category}` : '')
 
-  return await useAxios<{ data: Product[] }>({
+  return await useAxios<{ data: Product[]; items: number }>({
     url: `/products${queryString}`,
     method: 'GET'
   })

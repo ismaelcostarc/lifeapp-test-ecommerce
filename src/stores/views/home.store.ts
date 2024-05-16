@@ -9,12 +9,16 @@ export const useHomeStore = defineStore('useHomeStore', () => {
   const categories = ref<string[]>()
   const category = ref<string>('')
   const page = ref(1)
-  const perPage = ref()
+  const perPage = ref(10)
+  const total = ref<number>()
 
   const fetchData = async () => {
     const result = await getProductsPaginatedService(page.value, perPage.value, category.value)
 
-    if (!result.error) data.value = result.data?.data
+    if (!result.error) {
+      data.value = result.data?.data
+      total.value = result.data?.items
+    }
   }
 
   const init = async () => {
@@ -44,6 +48,7 @@ export const useHomeStore = defineStore('useHomeStore', () => {
     init,
     chooseCategory,
     categories,
-    data
+    data,
+    total
   }
 })
