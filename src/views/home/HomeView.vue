@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import getProductsService from '@/services/products/getProducts.service'
 import HomeFilterComponent from './components/HomeFilterComponent.vue'
 import HomeSortComponent from './components/HomeSortComponent.vue'
 import HomeListComponent from './components/HomeListComponent.vue'
+import { useHomeStore } from '@/stores/views/home.store'
 
-const result = await getProductsService()
+const store = useHomeStore()
 
-console.log(result)
+await store.init()
 </script>
 
 <template>
