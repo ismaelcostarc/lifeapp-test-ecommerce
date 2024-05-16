@@ -5,5 +5,21 @@ const store = useHomeStore()
 console.log(store.categories)
 </script>
 <template>
-  <div>Home Filter</div>
+  <div class="categories">
+    <button
+      v-for="category in store.categories"
+      :key="category"
+      @click="store.chooseCategory(category)"
+    >
+      {{ category }}
+    </button>
+  </div>
 </template>
+
+<style scoped>
+.categories {
+  display: flex;
+  gap: 2em;
+  padding: 2em;
+}
+</style>
