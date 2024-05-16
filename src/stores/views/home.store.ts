@@ -7,7 +7,7 @@ import { ref } from 'vue'
 export const useHomeStore = defineStore('useHomeStore', () => {
   const data = ref<Product[]>()
   const categories = ref<string[]>()
-  const category = ref<string>()
+  const category = ref<string>('')
   const page = ref(1)
   const perPage = ref()
 
@@ -34,7 +34,8 @@ export const useHomeStore = defineStore('useHomeStore', () => {
   }
 
   const chooseCategory = async (chosenCategory: string) => {
-    category.value = chosenCategory
+    if (chosenCategory === category.value) category.value = ''
+    else category.value = chosenCategory
 
     await fetchData()
   }
