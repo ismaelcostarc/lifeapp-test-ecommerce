@@ -1,5 +1,5 @@
 import { useAxios } from '@/composables/axios.composable'
-import type { Product } from '@/types/product.type'
+import type { PaginatedResponse, Product } from '@/utils/types.utils'
 
 interface GetProductsPaginatedServicePayload {
   _page: number
@@ -13,7 +13,7 @@ export default async function getProductsPaginatedService(
 ) {
   const params = { ...payload }
 
-  return await useAxios<{ data: Product[]; items: number }>({
+  return await useAxios<PaginatedResponse<Product[]>>({
     url: `/products`,
     params,
     method: 'GET'

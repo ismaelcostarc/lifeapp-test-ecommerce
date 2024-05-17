@@ -1,7 +1,7 @@
 import getProductsService from '@/services/products/getProducts.service'
 import getProductsPaginatedService from '@/services/products/getProductsPaginated.service'
-import type { Product } from '@/types/product.type'
 import { Sort } from '@/utils/enums.utils'
+import type { Product } from '@/utils/types.utils'
 import { defineStore } from 'pinia'
 import { ref, watch } from 'vue'
 
@@ -12,6 +12,7 @@ export const useHomeStore = defineStore('useHomeStore', () => {
   const page = ref(1)
   const perPage = ref(10)
   const total = ref<number>()
+  const pages = ref<number>()
   const sort = ref<Sort>(Sort.Alphabetical)
 
   const fetchData = async () => {
@@ -25,6 +26,7 @@ export const useHomeStore = defineStore('useHomeStore', () => {
     if (!result.error) {
       data.value = result.data?.data
       total.value = result.data?.items
+      pages.value = result.data?.pages
     }
   }
 
@@ -58,12 +60,21 @@ export const useHomeStore = defineStore('useHomeStore', () => {
     }
   )
 
+  watch(
+    () => page.value,
+    async (_) => {
+      await fetchData()
+    }
+  )
+
   return {
     init,
     category,
     categories,
     data,
     total,
-    sort
+    sort,
+    page,
+    pages
   }
 })

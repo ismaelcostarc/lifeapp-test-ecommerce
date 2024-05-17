@@ -1,5 +1,5 @@
 import { useAxios } from '@/composables/axios.composable'
-import type { Product } from '@/types/product.type'
+import type { Product } from '@/utils/types.utils'
 
 export default async function getProductsService(category?: string) {
   const queryString = `?category=${category}`
