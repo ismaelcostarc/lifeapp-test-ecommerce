@@ -1,3 +1,4 @@
+import { removeEmpty } from '@/utils/functions.utils'
 import axios, { type AxiosRequestConfig, type AxiosResponse } from 'axios'
 import { ref } from 'vue'
 
@@ -10,10 +11,11 @@ export async function useAxios<T>(opts: AxiosRequestConfig) {
   const error = ref(false)
   const res = ref<AxiosResponse<T>>()
 
+  const config = { ...removeEmpty(opts) } as AxiosRequestConfig
+  console.log(config)
+
   try {
-    res.value = await instance.request<T>({
-      ...opts
-    })
+    res.value = await instance.request<T>(config)
   } catch (err) {
     error.value = true
   }

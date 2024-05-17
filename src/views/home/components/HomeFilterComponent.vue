@@ -5,11 +5,8 @@ const store = useHomeStore()
 </script>
 <template>
   <div class="categories">
-    <button
-      v-for="category in store.categories"
-      :key="category"
-      @click="store.chooseCategory(category)"
-    >
+    <button @click="store.category = null">Todos os produtos</button>
+    <button v-for="category in store.categories" :key="category" @click="store.category = category">
       {{ category }}
     </button>
   </div>

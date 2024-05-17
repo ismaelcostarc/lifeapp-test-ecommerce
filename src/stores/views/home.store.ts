@@ -1,19 +1,26 @@
 import getProductsService from '@/services/products/getProducts.service'
 import getProductsPaginatedService from '@/services/products/getProductsPaginated.service'
 import type { Product } from '@/types/product.type'
+import { Sort } from '@/utils/enums.utils'
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
 export const useHomeStore = defineStore('useHomeStore', () => {
   const data = ref<Product[]>()
   const categories = ref<string[]>()
-  const category = ref<string>('')
+  const category = ref<string | null>(null)
   const page = ref(1)
   const perPage = ref(10)
   const total = ref<number>()
+  const sort = ref<Sort>(Sort.Alphabetical)
 
   const fetchData = async () => {
-    const result = await getProductsPaginatedService(page.value, perPage.value, category.value)
+    const result = await getProductsPaginatedService({
+      _page: page.value,
+      _per_page: perPage.value,
+      _sort: sort.value,
+      category: category.value
+    })
 
     if (!result.error) {
       data.value = result.data?.data
@@ -37,18 +44,26 @@ export const useHomeStore = defineStore('useHomeStore', () => {
     }
   }
 
-  const chooseCategory = async (chosenCategory: string) => {
-    if (chosenCategory === category.value) category.value = ''
-    else category.value = chosenCategory
+  watch(
+    () => category.value,
+    async (_) => {
+      await fetchData()
+    }
+  )
 
-    await fetchData()
-  }
+  watch(
+    () => sort.value,
+    async (_) => {
+      await fetchData()
+    }
+  )
 
   return {
     init,
-    chooseCategory,
+    category,
     categories,
     data,
-    total
+    total,
+    sort
   }
 })

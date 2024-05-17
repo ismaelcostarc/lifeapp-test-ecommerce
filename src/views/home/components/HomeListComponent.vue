@@ -6,7 +6,9 @@ const store = useHomeStore()
 <template>
   <div class="products">
     <div v-for="product in store.data" :key="product.id">
-      {{ product.name }}
+      {{ product.name }} <br />
+      {{ product.price }}
+      <hr />
     </div>
   </div>
 </template>
@@ -17,5 +19,9 @@ const store = useHomeStore()
   display: flex;
   flex-direction: column;
   gap: 1em;
+}
+
+hr {
+  border-top: 1px solid black;
 }
 </style>
