@@ -22,5 +22,6 @@ header {
 
 main {
   padding: var(--spacing-lg);
+  background-color: var(--color-light-gray);
 }
 </style>

@@ -1,6 +1,7 @@
 :root {
   /* Tamanhos de texto em rem */
-  --font-size-sm: 0.75rem;
+  --font-size-xsm: 0.7rem;
+  --font-size-sm: 0.85rem;
   --font-size-md: 1rem;
   --font-size-lg: 1.25rem;
   --font-size-xl: 1.5rem;

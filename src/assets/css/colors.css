@@ -22,7 +22,7 @@
   --color-link: #0000ee;
 
   /* Cores para destacar */
-  --color-accent1: #ffcc00;
-  --color-accent2: #33cccc;
-  --color-accent3: #cc99ff;
+  --color-highlight1: #ffcda2;
+  --color-highlight2: #b3ffff;
+  --color-highlight3: #dab6ff;
 }
