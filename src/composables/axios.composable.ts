@@ -12,7 +12,6 @@ export async function useAxios<T>(opts: AxiosRequestConfig) {
   const res = ref<AxiosResponse<T>>()
 
   const config = { ...removeEmpty(opts) } as AxiosRequestConfig
-  console.log(config)
 
   try {
     res.value = await instance.request<T>(config)

@@ -15,7 +15,6 @@ const store = useHomeStore()
 <style scoped>
 .categories {
   display: flex;
-  gap: 2em;
-  padding: 2em;
+  gap: var(--spacing-lg);
 }
 </style>

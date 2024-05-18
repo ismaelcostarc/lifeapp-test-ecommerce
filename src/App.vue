@@ -1,9 +1,18 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
+import { computed } from 'vue'
+import { RouterView, useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const layout = computed(() => {
+  return `${router.currentRoute.value.meta.layout}Layout`
+})
 </script>
 
 <template>
   <Suspense>
-    <RouterView />
+    <Component :is="layout">
+      <RouterView />
+    </Component>
   </Suspense>
 </template>

@@ -11,7 +11,7 @@ await store.init()
 </script>
 
 <template>
-  <main>
+  <div class="container">
     <HomeFilterComponent />
 
     <HomeSortComponent />
@@ -19,5 +19,13 @@ await store.init()
     <HomeListComponent />
 
     <BasePaginationComponent :pages="store.pages ?? 0" v-model="store.page" />
-  </main>
+  </div>
 </template>
+
+<style scoped>
+.container {
+  display: flex;
+  gap: var(--spacing-lg);
+  flex-direction: column;
+}
+</style>

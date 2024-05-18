@@ -15,10 +15,9 @@ const store = useHomeStore()
 
 <style scoped>
 .products {
-  padding: 2em;
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: var(--spacing-lg);
 }
 
 hr {
