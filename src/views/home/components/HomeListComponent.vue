@@ -73,10 +73,12 @@ const store = useHomeStore()
 
 .product__label {
   background-color: var(--color-accent1);
+  color: var(--color-white);
   -webkit-border-radius: 0 10px 0 10px;
   -moz-border-radius: 0 10px 0 10px;
   border-radius: 0 10px 0 10px;
   padding: var(--spacing-md);
+  font-size: var(--font-size-sm);
 }
 
 .label__container {

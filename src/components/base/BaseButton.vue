@@ -1,8 +1,9 @@
 <script setup lang="ts">
 const props = withDefaults(
   defineProps<{
-    type?: 'default' | 'cancel' | 'link' | 'delete'
+    type?: 'default' | 'cancel' | 'link' | 'delete' | 'highlight1' | 'highlight2' | 'highlight3'
     size?: 'small' | 'large' | 'full'
+    disabled?: boolean
   }>(),
   {
     type: 'default'
@@ -12,7 +13,10 @@ const emit = defineEmits(['click'])
 </script>
 
 <template>
-  <button @click.stop="emit('click')" :class="['type-' + props.type, 'size-' + props.size]">
+  <button
+    @click.stop="emit('click')"
+    :class="['type-' + props.type, 'size-' + props.size, props.customColor, disabled && 'disabled']"
+  >
     <slot />
   </button>
 </template>
@@ -48,5 +52,26 @@ button:hover {
 
 .size-full {
   width: 100%;
+}
+
+.type-hightlight1 {
+  background-color: var(--color-highlight1);
+}
+
+.type-hightlight2 {
+  background-color: var(--color-highlight2);
+}
+
+.type-hightlight3 {
+  background-color: var(--color-highlight3);
+}
+
+.disabled {
+  background-color: var(--color-gray);
+  cursor: initial;
+}
+
+.disabled:hover {
+  filter: none;
 }
 </style>
