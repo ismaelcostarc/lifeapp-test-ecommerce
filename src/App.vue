@@ -5,7 +5,7 @@ import { RouterView, useRouter } from 'vue-router'
 const router = useRouter()
 
 const layout = computed(() => {
-  return `${router.currentRoute.value.meta.layout}Layout`
+  return `${router.currentRoute.value.meta.layout ?? 'Default'}Layout`
 })
 </script>
 

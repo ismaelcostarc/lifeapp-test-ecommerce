@@ -3,8 +3,10 @@ import { useHomeStore } from '@/stores/views/home.store'
 import { CATEGORY_COLORS } from '@/utils/constants.utils'
 import BaseCard from '@/components/base/BaseCard.vue'
 import BaseButton from '@/components/base/BaseButton.vue'
+import { useCartStore } from '@/stores/views/cart.store'
 
 const store = useHomeStore()
+const cartStore = useCartStore()
 </script>
 <template>
   <div class="products">
@@ -38,7 +40,7 @@ const store = useHomeStore()
               <div class="product__price">R$ {{ product.price }}</div>
             </template>
           </div>
-          <BaseButton>Adicionar ao Carrinho</BaseButton>
+          <BaseButton @click="cartStore.addProduct(product.id)">Adicionar ao Carrinho</BaseButton>
         </div>
       </div>
     </BaseCard>

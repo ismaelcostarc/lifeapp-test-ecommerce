@@ -5,7 +5,7 @@ import type { Product } from '@/utils/types.utils'
 import { defineStore } from 'pinia'
 import { ref, watch } from 'vue'
 
-export const useHomeStore = defineStore('useHomeStore', () => {
+export const useHomeStore = defineStore('home', () => {
   const data = ref<Product[]>()
   const categories = ref<string[]>()
   const category = ref<string | null>(null)
