@@ -4,10 +4,22 @@ import HomeSortComponent from './components/HomeSortComponent.vue'
 import HomeListComponent from './components/HomeListComponent.vue'
 import BasePaginationComponent from '@/components/base/BasePaginationComponent.vue'
 import { useHomeStore } from '@/stores/views/home.store'
+import { watch } from 'vue'
 
 const store = useHomeStore()
 
 await store.init()
+
+watch(
+  () => store.page,
+  () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    })
+  }
+)
 </script>
 
 <template>
