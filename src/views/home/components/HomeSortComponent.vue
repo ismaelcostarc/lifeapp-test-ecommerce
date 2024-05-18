@@ -1,19 +1,22 @@
 <script setup lang="ts">
 import { useHomeStore } from '@/stores/views/home.store'
 import { Sort } from '@/utils/enums.utils'
+import BaseSelect from '@/components/base/BaseSelect.vue'
 
 const store = useHomeStore()
+
+const options = [
+  ['Ordem alfabética (de A a Z)', Sort.Alphabetical],
+  ['Ordem alfabética (de Z a A)', Sort.AlphabeticalReverse],
+  ['Preço (do menor ao maior)', Sort.PriceLowerToHigher],
+  ['Preço (do maior ao menor)', Sort.PriceHigherToLower]
+]
 </script>
 <template>
   <div class="sort">
-    <div>{{ store.total }}</div>
+    <div class="sort__total">{{ store.total }} produto(s) encontrado(s)</div>
     <div>
-      <select v-model="store.sort">
-        <option :value="Sort.Alphabetical">Ordem alfabética (de A a Z)</option>
-        <option :value="Sort.AlphabeticalReverse">Ordem alfabética (de Z a A)</option>
-        <option :value="Sort.PriceLowerToHigher">Preço (do menor ao maior)</option>
-        <option :value="Sort.PriceHigherToLower">Preço (do maior ao menor)</option>
-      </select>
+      <BaseSelect v-model="store.sort" :options="options" />
     </div>
   </div>
 </template>
@@ -22,5 +25,10 @@ const store = useHomeStore()
 .sort {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.sort__total {
+  font-size: var(--font-size-sm);
 }
 </style>
